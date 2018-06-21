@@ -1,0 +1,12 @@
+= form_for @indication do |f|
+  - if @indication.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@indication.errors.count, "error")} prohibited this indication from being saved:"
+      ul
+        - @indication.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

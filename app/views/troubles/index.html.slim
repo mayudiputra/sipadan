@@ -1,0 +1,27 @@
+h1 Listing troubles
+
+table
+  thead
+    tr
+      th Name
+      th Weight
+      th Description
+      th Fa
+      th
+      th
+      th
+
+  tbody
+    - @troubles.each do |trouble|
+      tr
+        td = trouble.name
+        td = trouble.weight
+        td = trouble.description
+        td = trouble.fa
+        td = link_to 'Show', trouble
+        td = link_to 'Edit', edit_trouble_path(trouble)
+        td = link_to 'Destroy', trouble, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Trouble', new_trouble_path

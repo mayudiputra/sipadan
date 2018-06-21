@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Id trouble:
+  = @rule.id_trouble
+p
+  strong Id indication:
+  = @rule.id_indication
+p
+  strong Weight:
+  = @rule.weight
+
+=> link_to 'Edit', edit_rule_path(@rule)
+'|
+=< link_to 'Back', rules_path

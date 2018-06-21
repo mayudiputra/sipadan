@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_trouble: 1
+  id_indication: 1
+  weight: 1.5
+
+two:
+  id_trouble: 1
+  id_indication: 1
+  weight: 1.5

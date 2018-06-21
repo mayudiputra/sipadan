@@ -1,0 +1,21 @@
+h1 Listing indications
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @indications.each do |indication|
+      tr
+        td = indication.name
+        td = link_to 'Show', indication
+        td = link_to 'Edit', edit_indication_path(indication)
+        td = link_to 'Destroy', indication, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Indication', new_indication_path

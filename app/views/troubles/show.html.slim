@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @trouble.name
+p
+  strong Weight:
+  = @trouble.weight
+p
+  strong Description:
+  = @trouble.description
+p
+  strong Fa:
+  = @trouble.fa
+
+=> link_to 'Edit', edit_trouble_path(@trouble)
+'|
+=< link_to 'Back', troubles_path

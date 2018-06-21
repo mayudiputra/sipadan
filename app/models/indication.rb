@@ -1,0 +1,2 @@
+class Indication < ApplicationRecord
+end
