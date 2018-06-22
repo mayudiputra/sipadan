@@ -13,8 +13,8 @@ table
   tbody
     - @rules.each do |rule|
       tr
-        td = rule.id_trouble
-        td = rule.id_indication
+        td = rule.trouble_id
+        td = rule.indication_id
         td = rule.weight
         td = link_to 'Show', rule
         td = link_to 'Edit', edit_rule_path(rule)

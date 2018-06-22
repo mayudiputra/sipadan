@@ -29,13 +29,11 @@ class RulesController < ApplicationController
     respond_to do |format|
       if @rule.save
         format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
-        format.json { render :show, status: :created, location: @rule }
       else
         format.html { render :new }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end 
 
   # PATCH/PUT /rules/1
   # PATCH/PUT /rules/1.json
@@ -43,10 +41,8 @@ class RulesController < ApplicationController
     respond_to do |format|
       if @rule.update(rule_params)
         format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rule }
       else
         format.html { render :edit }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class RulesController < ApplicationController
     @rule.destroy
     respond_to do |format|
       format.html { redirect_to rules_url, notice: 'Rule was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +64,6 @@ class RulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rule_params
-      params.require(:rule).permit(:id_trouble, :id_indication, :weight)
+      params.require(:rule).permit(:trouble_id, :indication_id, :weight)
     end
 end

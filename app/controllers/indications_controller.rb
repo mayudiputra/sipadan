@@ -29,10 +29,8 @@ class IndicationsController < ApplicationController
     respond_to do |format|
       if @indication.save
         format.html { redirect_to @indication, notice: 'Indication was successfully created.' }
-        format.json { render :show, status: :created, location: @indication }
       else
         format.html { render :new }
-        format.json { render json: @indication.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class IndicationsController < ApplicationController
     respond_to do |format|
       if @indication.update(indication_params)
         format.html { redirect_to @indication, notice: 'Indication was successfully updated.' }
-        format.json { render :show, status: :ok, location: @indication }
       else
         format.html { render :edit }
-        format.json { render json: @indication.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class IndicationsController < ApplicationController
     @indication.destroy
     respond_to do |format|
       format.html { redirect_to indications_url, notice: 'Indication was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
