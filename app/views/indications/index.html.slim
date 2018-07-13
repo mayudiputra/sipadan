@@ -1,20 +1,21 @@
 h1 Listing indications
 
-table
+table.table.table-bordered
   thead
     tr
+      th No
       th Name
-      th
-      th
-      th
+      th Action
 
   tbody
-    - @indications.each do |indication|
+    - @indications.each_with_index do |indication, idx|
       tr
+        td = idx + 1
         td = indication.name
-        td = link_to 'Show', indication
-        td = link_to 'Edit', edit_indication_path(indication)
-        td = link_to 'Destroy', indication, data: { confirm: 'Are you sure?' }, method: :delete
+        td 
+          = link_to 'Show', indication
+          = link_to 'Edit', edit_indication_path(indication)
+          = link_to 'Destroy', indication, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

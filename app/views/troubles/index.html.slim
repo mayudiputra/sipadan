@@ -1,26 +1,23 @@
 h1 Listing troubles
 
-table
+table.table.table-bordered
   thead
     tr
+      th No
       th Name
       th Weight
-      th Description
-      th Fa
-      th
-      th
-      th
+      th Action
 
   tbody
-    - @troubles.each do |trouble|
+    - @troubles.each_with_index do |trouble, idx|
       tr
+        td = idx + 1
         td = trouble.name
         td = trouble.weight
-        td = trouble.description
-        td = trouble.fa
-        td = link_to 'Show', trouble
-        td = link_to 'Edit', edit_trouble_path(trouble)
-        td = link_to 'Destroy', trouble, data: { confirm: 'Are you sure?' }, method: :delete
+        td 
+          = link_to 'Show', trouble
+          = link_to 'Edit', edit_trouble_path(trouble)
+          = link_to 'Destroy', trouble, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

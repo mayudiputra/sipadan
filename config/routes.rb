@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :rules
-  root 'consultations#index'
+  root 'home#index'
   resources :indications
   resources :troubles
   resources :consultations, only: [:index]

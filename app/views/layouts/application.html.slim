@@ -7,6 +7,41 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = render 'layouts/navbar'
+    nav.navbar.navbar-default id="headercolor"
+      .container-fluid
+        .navbar-header
+          button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+            span class="sr-only" Toggle navigation
+            span class="icon-bar"
+            span class="icon-bar"
+            span class="icon-bar"
+          .navbar-brand
+            = link_to "SP Bayes", root_path
+        div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+          ul class="nav navbar-nav navbar-right"
+            li 
+              = link_to 'Consultation', consultations_path, style: "text-decoration:none;"
+            li 
+              = link_to 'Encyclopedia', root_path, style: "text-decoration:none;"
+            - if user_signed_in?
+              li
+                = link_to 'Troubles', troubles_path
+              li
+                = link_to 'Indications', indications_path
+              li
+                = link_to 'Rules', rules_path
+              li 
+                = link_to destroy_user_session_path, :method => 'delete' do
+                  | Logout
+            - else
+              li
+                = link_to 'Login', new_user_session_path
     .container
       = yield
+    
+    footer.container-fluid
+      br
+      | Copyright &copy; Mayudi Putra
+      br
+      br
+      br

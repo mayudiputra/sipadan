@@ -1,24 +1,24 @@
 h1 Listing rules
 
-table
+table.table.table-bordered
   thead
     tr
-      th Id trouble
-      th Id indication
-      th Weight
-      th
-      th
-      th
+      th No
+      th Penyakit
+      th Gejala
+      th Bobot
+      th Action
 
   tbody
-    - @rules.each do |rule|
+    - @rules.each_with_index do |rule, idx|
       tr
-        td = rule.trouble_id
-        td = rule.indication_id
+        td = idx + 1
+        td = rule.trouble.name
+        td = rule.indication.name
         td = rule.weight
-        td = link_to 'Show', rule
-        td = link_to 'Edit', edit_rule_path(rule)
-        td = link_to 'Destroy', rule, data: { confirm: 'Are you sure?' }, method: :delete
+        td 
+          = link_to 'Edit', edit_rule_path(rule)
+          = link_to 'Destroy', rule, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
