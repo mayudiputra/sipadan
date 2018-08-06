@@ -1,25 +1,31 @@
-h1 Listing rules
+h2.page-header
+  ="Basis Aturan"
 
-table.table.table-bordered
+=link_to "+ Aturan Baru", new_rule_path, class: 'btn btn-primary btn-md'
+br
+br
+
+table.table.table-hover
   thead
     tr
-      th No
-      th Penyakit
-      th Gejala
-      th Bobot
-      th Action
+      th.col-md-1 No
+      th.col-md-3 Penyakit
+      th.col-md-4 Gejala
+      th.col-md-2 style="text-align:center;" Bobot Aturan
+      th.col-md-2 Opsi
 
   tbody
     - @rules.each_with_index do |rule, idx|
       tr
-        td = idx + 1
-        td = rule.trouble.name
-        td = rule.indication.name
-        td = rule.weight
-        td 
-          = link_to 'Edit', edit_rule_path(rule)
-          = link_to 'Destroy', rule, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Rule', new_rule_path
+        td.col-md-1 = idx + 1
+        td.col-md-4 = rule.trouble.name
+        td.col-md-4 = rule.indication.name
+        td.col-md-2 style="text-align:center;" = rule.weight
+        td.col-md-1 
+          = link_to edit_rule_path(rule) do
+            i class="glyphicon glyphicon-pencil" style="font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Sunting"
+            = "&nbsp;".html_safe()
+            = "&nbsp;".html_safe()
+          = link_to rule, data: { confirm: 'Are you sure?' }, method: :delete do
+            = "&nbsp;".html_safe()
+            i class="glyphicon glyphicon-trash" style="font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Hapus"

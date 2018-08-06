@@ -1,22 +1,28 @@
-h1 Listing indications
+h2.page-header 
+  ="Data Gejala"
 
-table.table.table-bordered
+=link_to "+ Gejala Baru", new_indication_path, class: 'btn btn-primary btn-md'
+br
+br
+
+table.table.table-hover
   thead
     tr
-      th No
-      th Name
-      th Action
+      th.col-md-1 No
+      th.col-md-9 Nama Gejala
+      th.col-md-2 Opsi
 
   tbody
     - @indications.each_with_index do |indication, idx|
       tr
-        td = idx + 1
-        td = indication.name
-        td 
-          = link_to 'Show', indication
-          = link_to 'Edit', edit_indication_path(indication)
-          = link_to 'Destroy', indication, data: { confirm: 'Are you sure?' }, method: :delete
+        td.col-md-1 = idx + 1
+        td.col-md-10 = indication.name
+        td.col-md-1 
+          = link_to edit_indication_path(indication) do
+            i class="glyphicon glyphicon-pencil" style="font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Sunting"
+            = "&nbsp;".html_safe()
+            = "&nbsp;".html_safe()
+          = link_to indication, data: { confirm: 'Are you sure?' }, method: :delete do
+            = "&nbsp;".html_safe()
+            i class="glyphicon glyphicon-trash" style="font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Hapus"
 
-br
-
-= link_to 'New Indication', new_indication_path

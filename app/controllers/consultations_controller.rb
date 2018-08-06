@@ -1,22 +1,31 @@
 class ConsultationsController < ApplicationController
   
   def index
-    # @consultations = Consultation.all
     @indications = Indication.order(:created_at)
   end
 
   def calculate_result
-    if consultation_params.present?
-      puts consultation_params
-      puts consultation_params
-      puts consultation_params
-      puts consultation_params
-      puts consultation_params
-      @results = calculate_result_action(consultation_params)
-      puts @results
+    if request.post?
+      if consultation_params.present?
+        @results = calculate_result_action(consultation_params)
+        render @result
+      else
+        respond_to do |format|
+        format.html { redirect_to consultations_path, notice: 'Pilih minimal satu gejala.'}
+      end
+      end
     else
-      s
+      respond_to do |format|
+        format.html { redirect_to consultations_path }
+      end
     end
+  
+    def calculate_result_get
+      respond_to do |format|
+        format.html { redirect_to consultations_path }
+      end
+    end
+    
   end
 
   private

@@ -1,0 +1,20 @@
+h2.page-header 
+  ="Ensiklopedia"
+
+table.table.table-bordered
+  thead
+    tr
+      th.col-md-1 No
+      th.col-md-10 Nama Penyakit
+      th.col-md-1 Opsi
+
+  tbody
+    - @troubles.each_with_index do |trouble, idx|
+      tr
+        td = idx + 1
+        td = trouble.name
+        td 
+          = link_to encyclopedia_path(trouble) do
+            i class="glyphicon glyphicon-eye-open" style="font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Lihat Detail"
+            = "&nbsp;".html_safe()
+            = "&nbsp;".html_safe()

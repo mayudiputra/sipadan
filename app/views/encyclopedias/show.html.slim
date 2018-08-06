@@ -1,0 +1,12 @@
+h4 = @trouble.name
+
+p = @trouble.description
+
+h5 = "Penanganan Pertama"  
+p = @trouble.fa
+  
+h5 = "Gejala"
+- @trouble.rules.each do |rule|
+  | - 
+  = rule.indication.name
+  br

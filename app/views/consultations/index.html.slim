@@ -1,20 +1,27 @@
-h1 Consultation
+h2.page-header 
+  ="Konsultasi"
 
-.row.form-group
-  .col-md-12 = "Pilih Gejala"
-
-.row.form-group
-  .col-md-1 = "No"
-  .col-md-11 = "Indications"
+div class="alert alert-info" role="alert"
+    | Silahkan pilih gejala yang kamu rasakan, kemudian tekan tombol hitung.
+/ .row.form-group
+/   .col-md-12 = "Pilih Gejala"
 
 = form_for "consultation", url: calculate_result_path do |f|
-  - @indications.each_with_index do |indication, idx|
-    .row.form-group
-      .col-md-1 = idx + 1
-      .col-md-10 = indication.name
-      .col-md-1 
-        = check_box_tag "consultation[indication_ids][]", indication.id
-  
-  = f.submit "Calculate", class: "btn btn-primary"
+  table.table.table-hover
+    thead
+      tr
+        th No
+        th Nama
+        th Opsi
 
-#consultation_result_wrapper
+    tbody
+      - @indications.each_with_index do |indication, idx|
+        tr
+          td.col-md-1 = idx + 1
+          td.col-md-10 = indication.name
+          td.col-md-1 style="text-align: center;"
+            = check_box_tag "consultation[indication_ids][]", indication.id
+
+  = f.submit "Hitung", class: "btn btn-primary"
+
+/ #consultation_result_wrapper

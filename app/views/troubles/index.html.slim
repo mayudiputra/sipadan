@@ -1,24 +1,29 @@
-h1 Listing troubles
+h2.page-header 
+  ="Data Penyakit"
 
-table.table.table-bordered
+=link_to "+ Penyakit Baru", new_trouble_path, class: 'btn btn-primary btn-md'
+br
+br
+
+table.table.table-hover
   thead
     tr
-      th No
-      th Name
-      th Weight
-      th Action
+      th.col-md-1 No
+      th.col-md-7 Nama Penyakit
+      th.col-md-2 style="text-align:center;" Bobot
+      th.col-md-2 Opsi
 
   tbody
     - @troubles.each_with_index do |trouble, idx|
       tr
-        td = idx + 1
-        td = trouble.name
-        td = trouble.weight
-        td 
-          = link_to 'Show', trouble
-          = link_to 'Edit', edit_trouble_path(trouble)
-          = link_to 'Destroy', trouble, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Trouble', new_trouble_path
+        td.col-md-1 = idx + 1
+        td.col-md-8 = trouble.name
+        td.col-md-2 style="text-align:center;" = trouble.weight
+        td.col-md-1 
+          = link_to edit_trouble_path(trouble) do
+            i class="fa fa-pencil" style="font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Sunting"
+            = "&nbsp;".html_safe()
+            = "&nbsp;".html_safe()
+          = link_to trouble, data: { confirm: 'Are you sure?' }, method: :delete do
+            = "&nbsp;".html_safe()
+            i class="fa fa-trash-o" style="font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Hapus"

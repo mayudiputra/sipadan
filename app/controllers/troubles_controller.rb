@@ -28,7 +28,7 @@ class TroublesController < ApplicationController
 
     respond_to do |format|
       if @trouble.save
-        format.html { redirect_to @trouble, notice: 'Trouble was successfully created.' }
+        format.html { redirect_to troubles_path, notice: 'Trouble was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class TroublesController < ApplicationController
   def update
     respond_to do |format|
       if @trouble.update(trouble_params)
-        format.html { redirect_to @trouble, notice: 'Trouble was successfully updated.' }
+        format.html { redirect_to  troubles_path, notice: 'Trouble was successfully updated.' }
       else
         format.html { render :edit }
       end

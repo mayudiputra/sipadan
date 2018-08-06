@@ -6,13 +6,18 @@
         - @rule.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .form-group
     = f.label :trouble_id
-    = f.number_field :trouble_id
-  .field
+    - troubles = Trouble.all.map{|x| [x.name, x.id]}
+    = f.select :trouble_id,(options_for_select(troubles, @rule.trouble_id)),{include_blank:'-Pilih penyakit-'}, class:"form-control"
+  .form-group
     = f.label :indication_id
-    = f.number_field :indication_id
-  .field
+    - indications= Indication.all.map{|x| [x.name, x.id]}
+    = f.select :indication_id,(options_for_select(indications, @rule.indication_id)),{include_blank:'-Pilih gejala-'}, class:"form-control"
+  .form-group
     = f.label :weight
-    = f.text_field :weight
-  .actions = f.submit
+    = f.text_field :weight, class:"form-control", placeholder: "Masukkan bobot aturan baru disini"
+  .actions 
+    = f.submit "Tambah", class: "btn btn-primary"
+
+  

@@ -1,47 +1,81 @@
 doctype html
 html
   head
-    title
-      | SistemPakarBayes
+    title Sipadan | Sistem Pakar Diagnosa Penyakit Anak
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    / = favicon_link_tag 'a.icon'
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
   body
-    nav.navbar.navbar-default id="headercolor"
-      .container-fluid
-        .navbar-header
-          button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
-            span class="sr-only" Toggle navigation
-            span class="icon-bar"
-            span class="icon-bar"
-            span class="icon-bar"
-          .navbar-brand
-            = link_to "SP Bayes", root_path
-        div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-          ul class="nav navbar-nav navbar-right"
-            li 
-              = link_to 'Consultation', consultations_path, style: "text-decoration:none;"
-            li 
-              = link_to 'Encyclopedia', root_path, style: "text-decoration:none;"
+    .container-fluid
+      .row
+        .col-sm-3.col-md-2.sidebar style="padding-top:10px;"
+          ul class="nav nav-sidebar" style="text-align: left;"
+            li style="text-align:center;"
+              i class="fa fa-stethoscope" style="font-size:30px; color:#0078d7;" data-toggle="tooltip" data-placement="bottom" title="Beranda"
+              = "&nbsp;".html_safe()
+              = "&nbsp;".html_safe()
+              span style="font-size:31px; font-weight:bold; color:#0078d7;" Sipadan
+              p style="font-size:8.5px; font-weight:bold; color:#0078d7;" sistem pakar diagnosa penyakit anak
+            li
+              =link_to root_path do
+                i class="glyphicon glyphicon-home" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Beranda"
+                = "&nbsp;".html_safe()
+                = "&nbsp;".html_safe()
+                span style="font-size: 15px;" Beranda 
+            li
+              =link_to consultations_path, data: { turbolinks: false } do
+                i class="glyphicon glyphicon-stats" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Konsultasi"
+                = "&nbsp;".html_safe()
+                = "&nbsp;".html_safe()
+                span style="font-size: 15px;" Konsultasi
+            li
+              =link_to encyclopedias_path do
+                i class="glyphicon glyphicon-book" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Ensiklopedia"
+                = "&nbsp;".html_safe()
+                = "&nbsp;".html_safe()
+                span style="font-size: 15px;" Ensiklopedia
             - if user_signed_in?
               li
-                = link_to 'Troubles', troubles_path
+                =link_to troubles_path do
+                  i class="glyphicon glyphicon-pushpin" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Data Penyakit"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Penyakit
               li
-                = link_to 'Indications', indications_path
+                =link_to indications_path do
+                  i class="glyphicon glyphicon-flash" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Data Gejala"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Gejala
               li
-                = link_to 'Rules', rules_path
-              li 
-                = link_to destroy_user_session_path, :method => 'delete' do
-                  | Logout
+                =link_to rules_path do
+                  i class="glyphicon glyphicon-star" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Basis Aturan"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Basis Aturan
+              li
+                =link_to edit_user_registration_path do
+                  i class="glyphicon glyphicon-lock" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Basis Aturan"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Password
+              li =link_to destroy_user_session_path, method: :delete do
+                  i class="glyphicon glyphicon-off" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Keluar"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Keluar
             - else
-              li
-                = link_to 'Login', new_user_session_path
-    .container
-      = yield
-    
-    footer.container-fluid
-      br
-      | Copyright &copy; Mayudi Putra
-      br
-      br
-      br
+              li =link_to new_user_session_path do
+                  i class="glyphicon glyphicon-off" style="font-size: 15px;" data-toggle="tooltip" data-placement="bottom" title="Masuk"
+                  = "&nbsp;".html_safe()
+                  = "&nbsp;".html_safe()
+                  span style="font-size: 15px;" Masuk
+
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          .jumbotron
+            = yield
+
+    / = render 'sweetify/alert'

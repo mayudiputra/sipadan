@@ -28,7 +28,7 @@ class IndicationsController < ApplicationController
 
     respond_to do |format|
       if @indication.save
-        format.html { redirect_to @indication, notice: 'Indication was successfully created.' }
+        format.html { redirect_to indications_path, notice: 'Indication was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class IndicationsController < ApplicationController
   def update
     respond_to do |format|
       if @indication.update(indication_params)
-        format.html { redirect_to @indication, notice: 'Indication was successfully updated.' }
+        format.html { redirect_to indications_path, notice: 'Indication was successfully updated.' }
       else
         format.html { render :edit }
       end

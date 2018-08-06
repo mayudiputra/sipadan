@@ -1,4 +1,10 @@
-h4 = "Consultation Result"
+h2.page-header
+  = "Laporan Hasil Konsultasi"
+  = "&nbsp;".html_safe()
+  = "&nbsp;".html_safe()
+  = link_to "#", id:"printPageButton", onclick: "window.print();", class: 'btn btn-primary', data: { turbolinks: false } do
+    i class="glyphicon glyphicon-print"
+    | &nbsp;Cetak
 
 - selected_indications = @results[:selected_indications]
 - trouble_ids = @results[:troubles_result].keys.join(',')
@@ -10,9 +16,19 @@ h4 = "Consultation Result"
 - result_trouble = Trouble.find(result_consultation[0])
 
 p
-  b = "Result of consultation is "
+  b = "Anda mengidap penyakit "
   b: u = "#{result_trouble.name}"
-  b = " with value = #{result_consultation[1].round(5)}"
+  b = " dengan nilai = #{result_consultation[1].round(5)}"
+  b = " (#{result_consultation[1].round(5)*100}%)"
+
+p = "#{result_trouble.description}"
+br
+  
+h4
+  b = "Pengobatan"
+  br
+p = "#{result_trouble.fa}"
+
 
 hr
 table.table
@@ -35,25 +51,26 @@ table.table
       th colspan="6"
         | Hasil Analisa
     tr
-      th = "Trouble name"
-      th = "Trouble weight"
-      th = "Selected indications"
-      th = "Rule weight"
-      th = "Multiplicity"
-      th = "Result"
+      th = "Nama Penyakit"
+      th = "Bobot"
+      th = "Gejala Terpilih"
+      th = "Bobot Aturan"
+      th = "Perkalian"
+      th = "Hasil"
   tbody
     - Rule.where("troubles.id in (#{trouble_ids}) and indications.id in (#{selected_indications})").joins(:trouble, :indication).group_by(&:trouble_id).each do |trouble_id, rule|
       - trouble = Trouble.find(trouble_id)
 
+      - rowspan = (rule.count < selected_indication_size) ? rule.count :  selected_indication_size
       - rule.each_with_index do |rule, idx|
         - if idx == 0
           tr
-            td rowspan="#{selected_indication_size}" = "#{trouble.name}"
-            td rowspan="#{selected_indication_size}" = trouble.weight
+            td rowspan="#{rowspan}" = "#{trouble.name}"
+            td rowspan="#{rowspan}" = trouble.weight
             td = rule.indication.name
             td = rule.weight
-            td rowspan="#{selected_indication_size}" = troubles_multiply["#{trouble_id}"].round(5)
-            td rowspan="#{selected_indication_size}" = troubles_result["#{trouble_id}"].round(5)
+            td rowspan="#{rowspan}" = troubles_multiply["#{trouble_id}"].round(5)
+            td rowspan="#{rowspan}" = troubles_result["#{trouble_id}"].round(5)
         - else
           tr
             td = rule.indication.name

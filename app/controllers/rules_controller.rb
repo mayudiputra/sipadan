@@ -28,7 +28,7 @@ class RulesController < ApplicationController
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
+        format.html { redirect_to rules_path, notice: 'Rule was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class RulesController < ApplicationController
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
+        format.html { redirect_to rules_path, notice: 'Rule was successfully updated.' }
       else
         format.html { render :edit }
       end
