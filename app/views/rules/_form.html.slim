@@ -1,21 +1,24 @@
 = form_for @rule do |f|
   - if @rule.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@rule.errors.count, "error")} prohibited this rule from being saved:"
-      ul
-        - @rule.errors.full_messages.each do |message|
-          li = message
+      .alert.alert-danger
+        h4 
+          = @rule.errors.count
+          |  error, tidak dapat menyimpan data :
+        ul
+          - @rule.errors.full_messages.each do |message|
+            li = message
 
   .form-group
-    = f.label :trouble_id
+    = f.label "Nama Penyakit"
     - troubles = Trouble.all.map{|x| [x.name, x.id]}
     = f.select :trouble_id,(options_for_select(troubles, @rule.trouble_id)),{include_blank:'-Pilih penyakit-'}, class:"form-control"
   .form-group
-    = f.label :indication_id
+    = f.label "Nama Gejala"
     - indications= Indication.all.map{|x| [x.name, x.id]}
     = f.select :indication_id,(options_for_select(indications, @rule.indication_id)),{include_blank:'-Pilih gejala-'}, class:"form-control"
   .form-group
-    = f.label :weight
+    = f.label "Bobot Aturan"
     = f.text_field :weight, class:"form-control", placeholder: "Masukkan bobot aturan baru disini"
   .actions 
     = f.submit "Tambah", class: "btn btn-primary"

@@ -1,13 +1,16 @@
 = form_for @trouble do |f|
   - if @trouble.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@trouble.errors.count, "error")} prohibited this trouble from being saved:"
-      ul
-        - @trouble.errors.full_messages.each do |message|
-          li = message
+      .alert.alert-danger
+        h4 
+          = @trouble.errors.count
+          |  error, tidak dapat menyimpan data :
+        ul
+          - @trouble.errors.full_messages.each do |message|
+            li = message
 
   .form-group
-    = f.label "Nama"
+    = f.label "Nama Penyakit"
     = f.text_field :name, class:"form-control", placeholder: "Masukkan nama penyakit baru disini"
   .form-group
     = f.label "Bobot"

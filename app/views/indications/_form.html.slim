@@ -2,11 +2,15 @@
   - if @indication.errors.any?
     #error_explanation
       .alert.alert-danger
-        - @indication.errors.full_messages.each do |message|
-          = message
+        h4 
+          = @indication.errors.count
+          |  error, tidak dapat menyimpan data :
+        ul
+          - @indication.errors.full_messages.each do |message|
+            li = message
 
   .form-group
-    = f.label "Nama"
+    = f.label "Nama gejala"
     = f.text_field :name, class:"form-control", placeholder: "Masukkan nama gejala baru disini"
   
   .actions 

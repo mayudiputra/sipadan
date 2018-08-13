@@ -8,16 +8,14 @@ br
 table.table.table-hover
   thead
     tr
-      th.col-md-1 No
       th.col-md-7 Nama Penyakit
       th.col-md-2 style="text-align:center;" Bobot
       th.col-md-2 Opsi
 
   tbody
-    - @troubles.each_with_index do |trouble, idx|
+    - @troubles.each do |trouble|
       tr
-        td.col-md-1 = idx + 1
-        td.col-md-8 = trouble.name
+        td.col-md-9 = trouble.name
         td.col-md-2 style="text-align:center;" = trouble.weight
         td.col-md-1 
           = link_to edit_trouble_path(trouble) do
@@ -27,3 +25,4 @@ table.table.table-hover
           = link_to trouble, data: { confirm: 'Are you sure?' }, method: :delete do
             = "&nbsp;".html_safe()
             i class="fa fa-trash-o" style="font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Hapus"
+= will_paginate @troubles

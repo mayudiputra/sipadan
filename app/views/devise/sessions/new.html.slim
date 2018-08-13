@@ -5,13 +5,13 @@ span style="text-align:center;"
   span style="font-size:37px; font-weight:bold; color:#0078d7;" Sipadan
   p style="font-size:10px; font-weight:bold; color:#0078d7;" sistem pakar diagnosa penyakit anak
   br
-p style="color: #2ecc71"
+p style="color: red"
   =alert
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
-    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "form-control"
+    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control"
   .field
-    = f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control"
+    = f.password_field :password, autocomplete: "off", placeholder: "Kata sandi", class: "form-control"
   - if devise_mapping.rememberable?
   .actions
     = f.submit "Masuk", style: "background-color: #0078d7;", class: "btn btn-success"

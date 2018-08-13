@@ -38,10 +38,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'jquery-rails'
 gem "font-awesome-rails"
-gem 'sweetify'
-gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
-gem 'sweet-alert2-rails'
-
+gem 'will_paginate', '~> 3.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
